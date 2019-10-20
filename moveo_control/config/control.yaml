@@ -1,0 +1,56 @@
+moveo_urdf:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  arm_controller:
+    type: effort_controllers/JointTrajectoryController
+    gains:
+      Joint_1: { p: 10000.0, i: 0.01, d: 10.0 }
+      Joint_2: { p: 10000.0, i: 0.01, d: 10.0 }
+      Joint_3: { p: 10000.0, i: 0.01, d: 10.0 }
+      Joint_4: { p: 10000.0, i: 0.01, d: 10.0 }
+      Joint_5: { p: 10000.0, i: 0.01, d: 10.0 }    
+    joints:
+      - Joint_1
+      - Joint_2
+      - Joint_3
+      - Joint_4
+      - Joint_5
+    constraints:
+      Joint_1:
+        goal: 0.1
+      Joint_2:
+        goal: 0.1
+      Joint_3:
+        goal: 0.1
+      Joint_4:
+        goal: 0.1
+      Joint_5:
+        goal: 0.1
+      goal_time: 10.0
+      stopped_velocity_tolerance: 0.05
+
+  hand_controller:
+    type: effort_controllers/JointTrajectoryController
+    gains:
+      Gripper_Idol_Gear_Joint: {p: 100.0, i: 0.01, d: 10.0} 
+      Gripper_Servo_Gear_Joint: {p: 100.0, i: 0.01, d: 10.0}
+    joints:
+      - Gripper_Idol_Gear_Joint
+      - Gripper_Servo_Gear_Joint
+    constraints:
+      Gripper_Idol_Gear_Joint:
+        goal: 0.3
+      Gripper_Servo_Gear_Joint:
+        goal: 0.3
+      goal_time: 10.0
+      stopped_velocity_tolerance: 0.5
+      
+gazebo_ros_control:
+  pid_gains:
+    Tip_Gripper_Idol_Joint: {p: 100.0, i: 0.01, d: 10.0} 
+    Tip_Gripper_Servo_Joint: {p: 100.0, i: 0.01, d: 10.0} 
+    Pivot_Arm_Gripper_Idol_Joint: {p: 100.0, i: 0.01, d: 10.0} 
+    Pivot_Arm_Gripper_Servo_Joint: {p: 100.0, i: 0.01, d: 10.0} 

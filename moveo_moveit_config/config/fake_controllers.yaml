@@ -1,0 +1,14 @@
+controller_list:
+  - name: fake_hand_controller
+    type: last point
+    joints:
+      - Gripper_Servo_Gear_Joint
+      - Gripper_Idol_Gear_Joint
+  - name: fake_arm_controller
+    type: last point
+    joints:
+      - Joint_1
+      - Joint_2
+      - Joint_3
+      - Joint_4
+      - Joint_5

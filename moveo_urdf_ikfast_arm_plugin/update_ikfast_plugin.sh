@@ -1,0 +1,1 @@
+rosrun moveit_kinematics create_ikfast_moveit_plugin.py moveo_urdf arm moveo_urdf_ikfast_arm_plugin /home/bobbie/moveo_ws/src/moveo_urdf_ikfast_arm_plugin/src/moveo_urdf_arm_ikfast_solver.cpp

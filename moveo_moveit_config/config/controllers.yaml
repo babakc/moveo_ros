@@ -1,0 +1,16 @@
+controller_list:
+  - name: moveo_urdf/arm_controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints:
+      - Joint_1
+      - Joint_2
+      - Joint_3
+      - Joint_4
+      - Joint_5
+  - name: moveo_urdf/hand_controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints:
+      - Gripper_Idol_Gear_Joint
+      - Gripper_Servo_Gear_Joint
