@@ -5,10 +5,13 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /MotionPlanning1/Planning Request1
-        - /TF1/Frames1
+        - /TF1
         - /TF1/Tree1
+        - /RobotModel1
+        - /Image1
+        - /PointCloud22
       Splitter Ratio: 0.742560029
-    Tree Height: 204
+    Tree Height: 405
   - Class: rviz/Help
     Name: Help
   - Class: rviz/Views
@@ -16,6 +19,8 @@ Panels:
       - /Current View1
     Name: Views
     Splitter Ratio: 0.5
+Toolbars:
+  toolButtonStyle: 2
 Visualization Manager:
   Class: ""
   Displays:
@@ -130,27 +135,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          camera_depth_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_depth_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          camera_rgb_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_rgb_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           world:
             Alpha: 1
             Show Axes: false
@@ -260,27 +244,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          camera_depth_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_depth_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          camera_rgb_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          camera_rgb_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           world:
             Alpha: 1
             Show Axes: false
@@ -294,43 +257,43 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: false
+        All Enabled: true
         Gripper_Idol_Gear:
-          Value: false
+          Value: true
         Gripper_Servo_Gear:
-          Value: false
+          Value: true
         Link_1:
-          Value: false
+          Value: true
         Link_2:
-          Value: false
+          Value: true
         Link_3:
-          Value: false
+          Value: true
         Link_4:
-          Value: false
+          Value: true
         Link_5:
           Value: true
         Pivot_Arm_Gripper_Idol:
-          Value: false
+          Value: true
         Pivot_Arm_Gripper_Servo:
-          Value: false
+          Value: true
         Tip_Gripper_Idol:
-          Value: false
+          Value: true
         Tip_Gripper_Servo:
-          Value: false
+          Value: true
         base_link:
-          Value: false
+          Value: true
         camera_depth_frame:
-          Value: false
+          Value: true
         camera_depth_optical_frame:
-          Value: false
+          Value: true
         camera_link:
           Value: true
         camera_rgb_frame:
-          Value: false
+          Value: true
         camera_rgb_optical_frame:
-          Value: false
+          Value: true
         world:
-          Value: false
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -394,6 +357,89 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: false
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        camera_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_rgb_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_rgb_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+      Name: RobotModel
+      Robot Description: kinect_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /camera/rgb/image_color
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.00999999978
+      Style: Flat Squares
+      Topic: /camera/depth/points
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -425,26 +471,28 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.185202643
+      Pitch: 0.270202547
       Target Frame: world
       Value: XYOrbit (rviz)
-      Yaw: 1.73679507
+      Yaw: 0.62680459
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 750
+  Height: 2112
   Help:
     collapsed: false
   Hide Left Dock: false
   Hide Right Dock: false
+  Image:
+    collapsed: false
   MotionPlanning:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd00000001000000000000022f000002b3fc0200000009fb000000100044006900730070006c006100790073010000002200000156000000d500fffffffb0000000800480065006c00700000000342000000bb0000006d00fffffffb0000000a0056006900650077007300000003b0000000b0000000a900fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067010000017c000001590000015000fffffffb0000000a0049006d00610067006500000003c70000003b0000000000000000fb0000000a0049006d006100670065010000050c000003070000000000000000000002ec000002b300000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000004b1000007d3fc020000000afb000000100044006900730070006c006100790073010000004000000244000000fa00fffffffb0000000800480065006c00700000000342000000bb0000009300fffffffb0000000a0056006900650077007300000003b0000000b0000000e500fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000007200fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000002900000027d0000026c00fffffffb0000000a0049006d0061006700650100000519000002fa0000002400fffffffb0000000a0049006d006100670065010000050c000003070000000000000000fb0000000a0049006d0061006700650100000601000002120000000000000000000009c1000007d300000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
     collapsed: false
-  Width: 1311
-  X: 49
-  Y: 18
+  Width: 3710
+  X: 130
+  Y: 48
