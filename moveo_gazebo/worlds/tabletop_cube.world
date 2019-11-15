@@ -37,6 +37,16 @@
       <uri>model://ground_plane</uri>
     </include>
 	-->
+    <include>
+      <uri>model://table_short</uri>
+      <name>table1</name>
+      <pose>-0.35 0.35 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table_short</uri>
+      <name>table2</name>
+      <pose>0.35 0.35 0 0 0 0</pose>
+    </include>
     <gui fullscreen="0">
       <camera name="user_camera">
         <pose>1.623295 2.046589 1.968838 -0.000001 0.607641 -2.414998</pose>
