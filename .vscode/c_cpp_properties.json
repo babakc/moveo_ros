@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/bobbie/catkin_ws/devel/include/**",
+        "/opt/ros/kinetic/include/**",
+        "/home/bobbie/catkin_ws/src/moveo_urdf_ikfast_arm_plugin/include/**",
+        "/home/bobbie/catkin_ws/src/roboticsgroup_gazebo_plugins/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ]
+}

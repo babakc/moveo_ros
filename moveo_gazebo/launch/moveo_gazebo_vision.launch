@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <arg name="kinect_name" default="moveo_kinect"/>
+  <param name="kinect_description" textfile="$(find moveo_kinect)/urdf/moveo_kinect.urdf" />
+
+  <!-- Spawn robot in Gazebo -->
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_kinect"
+    args="-urdf -param kinect_description -model $(arg kinect_name)" respawn="false" output="screen"/>
+
+</launch>

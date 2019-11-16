@@ -1,0 +1,4 @@
+ <launch>
+    <node pkg="tf" type="static_transform_publisher" name="camera_rgb_frame" args="0.0 1.1 0.5 -1.57 0 0 world camera_rgb_frame 100" />  
+    <node pkg="tf" type="static_transform_publisher" name="moveo_visicamera_depth_optical_frameon" args="0 0 0 -1.57079632679 0 -1.57079632679 camera_rgb_frame camera_depth_optical_frame 100" />
+ </launch>
