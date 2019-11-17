@@ -3,10 +3,13 @@
 
 import rospy
 import sys
+import copy
 from msgpack import loads
 import time
 from datetime import datetime 
-from moveo_interface.msg import ArmJointState
+
+from moveo_interface.msg import ArmJointState, ArmJointArray
+
 import numpy as np
 import actionlib
 import math
@@ -26,12 +29,12 @@ class arm_control(object):
     total = ArmJointState()
 
     def __init__(self, name):
-        self.pub = rospy.Publisher('/joint_steps', ArmJointState, queue_size=50)
+        self.pub = rospy.Publisher('/joint_steps', ArmJointArray, queue_size=50)
         self._as_arm = actionlib.SimpleActionServer("moveo_urdf/arm_controller/follow_joint_trajectory", FollowJointTrajectoryAction, execute_cb=self.execute_joint_trajectory, auto_start = False)
         self._as_arm.start()
         self._as_gripper = actionlib.SimpleActionServer("moveo_urdf/hand_controller/follow_joint_trajectory", FollowJointTrajectoryAction, execute_cb=self.execute_gripper_action, auto_start = False)
         self._as_gripper.start()
-        self.pub_joint_states = rospy.Publisher("/moveo_urdf/joint_states", JointState, queue_size=2000)
+        self.pub_joint_states = rospy.Publisher("/moveo_urdf/joint_states", JointState, queue_size=500)
         self.lJointAngles = [0, 0, 0, 0, 0, 0, 0, 0]
         self.count = 0
         self.run()
@@ -54,11 +57,13 @@ class arm_control(object):
     def execute_joint_trajectory(self, goal):
         stepsPerRevolution = [65600,18000,4500,6560,28800]
         arm_steps = ArmJointState()
+        arm_array = ArmJointArray()
+        temp_total = ArmJointState()
+        count = 0
         self._result.status = FollowJointTrajectoryResult.SUCCESSFUL
         for point in goal.trajectory.points:
             print goal.trajectory.joint_names
             print point.positions
-            time.sleep(0.05)
             # get new desired joint values in order from link1_joint to link5_joint
             lGoalPosOrdered = [
                 point.positions[goal.trajectory.joint_names.index(lJointNames[0])],
@@ -80,12 +85,18 @@ class arm_control(object):
                 self.total.position3 += arm_steps.position3
                 self.total.position4 += arm_steps.position4
                 self.total.position5 += arm_steps.position5
-                
-                self.pub.publish(self.total)
 
+                temp_total = copy.copy(self.total)
+
+                arm_array.ArmJoints.append(temp_total)
                 self.lJointAngles = [ lGoalPosOrdered[0], lGoalPosOrdered[1], lGoalPosOrdered[2], lGoalPosOrdered[3], lGoalPosOrdered[4], 0, 0, 0 ]
                 print self.total.position5
-		# commit new values to hardware
+                if count % 3 == 0:
+                    print "What?"
+                    self.pub.publish(arm_array)
+                    time.sleep(1)
+                count = count + 1
+                
             except Exception, e: 
                 print str(e)
                 # reject if position is impossible for the hardware to reach
@@ -94,7 +105,7 @@ class arm_control(object):
                 self._result.status = FollowJointTrajectoryResult.INVALID_GOAL
                 break
 
-	    # publish current position error while driving to position
+	        # publish current position error while driving to position
             error = 0
             while True:
                 error = [0.0, 0.0, 0.0]
@@ -118,9 +129,9 @@ class arm_control(object):
             self._feedback.feedback.actual.positions = self.lAngles[:-1]
             self._feedback.feedback.error.positions = error
             self._as_arm.publish_feedback(self._feedback.feedback)
-
-        self._as_arm.set_succeeded(self._result.result)
         
+        print arm_array
+        self._as_arm.set_succeeded(self._result.result)
 
     def execute_gripper_action(self, goal):
         # helper variables
